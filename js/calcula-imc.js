@@ -23,7 +23,7 @@ for (var i = 0; i < clientes.length; i++) {
   if(peso >= 300 || peso <= 0){
     tdimc.textContent = "Peso Inválido!";
     pesoValido = false;
-    cliente.classList.add("cliente-invalido");                                  // função responsavem de chamar uma função criada no css para mudar a cor;
+    cliente.classList.add("cliente-invalido");                                  //(tra tra tra )função responsavem de chamar uma função criada no css para mudar a cor;
   }
 
   if(altura >= 3.00 || altura <=0){
