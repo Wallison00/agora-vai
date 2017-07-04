@@ -7,6 +7,11 @@ botaoAdicionar.addEventListener("click", function(event){
 
   var pacienteTr = montaTr(paciente);
 
+  if(!validaPaciente(paciente)){
+    console.log("Paciente Inválido");
+    return;                                                                     //impede que o paciente seja cadastrado na tabela mesmo que esteja inválido;
+  };
+
   var tabela = document.querySelector("#tabela-pacientes");                     //seleção da função de corpo do HTML e criação de uma variável no JavaScript
 
   tabela.appendChild(pacienteTr);                                               //Retorno dos dados para a função do HTML
@@ -54,3 +59,11 @@ function montarTd(dado, classe){                                                
   return td;
 }
 //----------------------------------------------------------------------------//
+
+function validaPaciente(paciente){
+  if(validaPeso(paciente.peso)){
+    return true;
+  }else{
+    return false;
+  }
+}

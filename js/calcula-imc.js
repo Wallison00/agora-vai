@@ -17,16 +17,16 @@ for (var i = 0; i < clientes.length; i++) {
 
   var tdimc = cliente.querySelector(".info-imc");
 
-  var pesoValido = true;
-  var alturaValido = true;
+  var pesoValido = validaPeso(peso);                                            //busca o valor true ou false das funções validaPeso e atribui na variável
+  var alturaValido = validaAltura(altura);
 
-  if(peso >= 300 || peso <= 0){
+  if(!pesoValido){                                                              //O simbolo de "!" se refere a negação então ele está perguntado se o peso não for válido execute a função;
     tdimc.textContent = "Peso Inválido!";
     pesoValido = false;
-    cliente.classList.add("cliente-invalido");                                  //(tra tra tra )função responsavem de chamar uma função criada no css para mudar a cor;
+    cliente.classList.add("cliente-invalido");                                  //função responsavem de chamar uma função criada no css para mudar a cor;
   }
 
-  if(altura >= 3.00 || altura <=0){
+  if(!alturaValido){
     tdimc.textContent = "Altura Inválida!";
     alturaValido = false;
     cliente.classList.add("cliente-invalido");                                  // função responsavem de chamar uma função criada no css para mudar a cor;
@@ -47,4 +47,19 @@ function calculaImc(peso,altura){                                               
   imc = peso / (altura * altura);
 
   return imc.toFixed(2);                                                        //toFixed função que determina o limite de casas decimais que aparecem
+}
+
+function validaPeso(peso){                                                      //valida o peso para retornar true ou false
+  if(peso >= 0 && peso <= 1000){
+    return true;
+  }else {
+    return false;
+  }
+}
+
+function validaAltura(altura){                                                  //valida altura para retornar true ou false
+  if(altura >= 0 && altura <= 3.00){
+    return true;
+  }
+    return false;
 }
