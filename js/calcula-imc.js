@@ -40,15 +40,6 @@ for (var i = 0; i < clientes.length; i++) {
 
 var botaoAdicionar = document.querySelector("#adicionar-paciente");             // Seleciona e localiza o botão adicionar do HTML
 
-
-function calculaImc(peso,altura){                                               // função responsavel por calcular o imc trazendo os parametros e retornando;
-  var imc = 0;
-
-  imc = peso / (altura * altura);
-
-  return imc.toFixed(2);                                                        //toFixed função que determina o limite de casas decimais que aparecem
-}
-
 function validaPeso(peso){                                                      //valida o peso para retornar true ou false
   if(peso >= 0 && peso <= 1000){
     return true;
@@ -62,4 +53,12 @@ function validaAltura(altura){                                                  
     return true;
   }
     return false;
+}
+
+function calculaImc(peso,altura){                                               // função responsavel por calcular o imc trazendo os parametros e retornando;
+  var imc = 0;
+
+  imc = peso / (altura * altura);
+
+  return imc.toFixed(2);                                                        //toFixed função que determina o limite de casas decimais que aparecem
 }
