@@ -9,9 +9,9 @@ botaoAdicionar.addEventListener("click", function(event){
 
   var erros = validaPaciente(paciente); //  variável de erro criada recebendo parametro
 
+  console.log(erros);
   if(erros.length > 0){
-    var mensagemErro = document.querySelector("#mensagem-erro");
-    mensagemErro.textContent = erros;
+    exibeMensagensDeErro(erros);
     return;                                                                     //impede que o paciente seja cadastrado na tabela mesmo que esteja inválido;
   };
 
@@ -21,7 +21,22 @@ botaoAdicionar.addEventListener("click", function(event){
 
   form.reset();
 
+  var mensagensErro = document.querySelector("#mensagens-erro");
+  mensagensErro.innerHTML = "";
+
 });
+
+function exibeMensagensDeErro(erros){
+  var ul = document.querySelector("#mensagens-erro");
+  ul.innerHTML = "";//Limpa as mensagens de erro da tela (para atualizar)
+
+  erros.forEach(function(nErro){//(para cada item do meu array voce vaifazer alguma coisa)(nErro = nova variável que vai ser os ciclos) Parecido com o laço For só que ele roda a quantidade necessaria "erros";
+        var li = document.createElement("li");//cria um elemento li no HTML
+        li.textContent = nErro;
+        ul.appendChild(li);
+  });
+}
+
 //------------------------Obter Paciente do Formulário------------------------//
 
 function obterPacienteDoFormulario(form){                                       // função que obtem os dados do formulario de um paciente
@@ -67,12 +82,28 @@ function validaPaciente(paciente){
 
   var erros = []; //como a função só retorna um unico valor, é necessario a criação desse array para que ele capture varios resultados e retorne;
 
+  if(paciente.nome.length == 0){
+    erros.push("Defina o nome do Paciente");
+  }
+
+  if(paciente.peso.length == 0){
+    erros.push("Defina o Peso");
+  }
+
   if(!validaPeso(paciente.peso)){//se o peso não for valido "!"
     erros.push("Peso Inválido"); // a função push escreve esse resultado dentro de um espaço no array
   }
 
-  if(validaAltura(paciente.altura)){
+  if(paciente.altura.length == 0){
+    erros.push("Defina a Altura");
+  }
+
+  if(!validaAltura(paciente.altura)){
     erros.push("Altura Inválida");
+  }
+
+  if(paciente.gordura.length == 0){
+    erros.push("Defina o Percentual de Gordura");
   }
 
   return erros;//retornando os valores capturados para o array;
