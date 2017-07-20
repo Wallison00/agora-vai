@@ -9,8 +9,9 @@ campoFiltro.addEventListener("input", function(){//input = função responsavel 
        var paciente = pacientes[i];
        var tdNome = paciente.querySelector(".info-nome");
        var nome = tdNome.textContent;
+       var expressao = new RegExp(this.value, "i");//RegExp = Expressão regular / "i" - aceita caracters tanto maiúsculos quanto minúsculos;
 
-       if(nome != this.value){//this.value = valor atual
+       if(!expressao.test(nome)){//teste = testa se a variavel do tipop nome é diferente(!) para aplicar a função invisivel;
          paciente.classList.add("invisivel");
        }else {
          paciente.classList.remove("invisivel");
