@@ -5,8 +5,6 @@ botaoAdicionar.addEventListener("click", function(event){
 
   var paciente = obterPacienteDoFormulario(form);                               //recebendo as informações da função obterPacienteDoFormulario qe tem como parametro o form, depois atribuir o retorno a uma nova variavel chamada de paciente;
 
-  var pacienteTr = montaTr(paciente);
-
   var erros = validaPaciente(paciente); //  variável de erro criada recebendo parametro
 
   console.log(erros);
@@ -15,16 +13,18 @@ botaoAdicionar.addEventListener("click", function(event){
     return;                                                                     //impede que o paciente seja cadastrado na tabela mesmo que esteja inválido;
   };
 
-  var tabela = document.querySelector("#tabela-pacientes");                     //seleção da função de corpo do HTML e criação de uma variável no JavaScript
-
-  tabela.appendChild(pacienteTr);                                               //Retorno dos dados para a função do HTML
-
   form.reset();
 
   var mensagensErro = document.querySelector("#mensagens-erro");
   mensagensErro.innerHTML = "";
 
 });
+
+function adicionaPacienteNaTabela(paciente){
+  var pacienteTr = montaTr(paciente);
+  var tabela = document.querySelector("#tabela-pacientes");                     //seleção da função de corpo do HTML e criação de uma variável no JavaScript
+  tabela.appendChild(pacienteTr);                                               //Retorno dos dados para a função do HTML
+}
 
 function exibeMensagensDeErro(erros){
   var ul = document.querySelector("#mensagens-erro");

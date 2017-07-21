@@ -1,7 +1,6 @@
 var botaoAdicionar = document.querySelector("#buscar-pacientes");
 
 botaoAdicionar.addEventListener("click", function () {
-  console.log("cliquei no botao");
 
   //XMLHttpRequest = Requisições http do tipo tipo xml
   var xhr = new XMLHttpRequest();
@@ -10,8 +9,15 @@ botaoAdicionar.addEventListener("click", function () {
   xhr.open("GET", "http://api-pacientes.herokuapp.com/pacientes");
 
   xhr.addEventListener("load", function(){//load = Carregar
-    //responseText = Texto da Resposta ou os dados em texto;
-    console.log(xhr.responseText);
+    var resposta = xhr.responseText;
+
+    //JSON.parse = transforma o responseText em objeto javascript
+    var pacientes = JSON.parse(resposta);
+
+    pacientes.forEach(function(paciente){
+      //busca os dados externos e atribui a tabela já criada
+      adicionaPacienteNaTabela(paciente);
+    });
   });
 
   //send = enviar
